@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block titulo %}Home{% endblock  %}
+
+{% block contenido %}
+<div class="card">
+ 
+    <div class="card-body">
+        <h1 class="card-title">Listado de criptomonedas</h1>
+        
+        
+        <div class="col-4 align-self-end">
+            <h3 class="card-text"></h3>
+        
+            <a name="" id="" class="btn btn-primary" href="{% url 'create' %}" role="button">Agregar cripto</a>            
+        </div>
+           
+        
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imagen</th>
+                <th>Moneda</th>
+                <th>Título</th>
+                <th>Nº Unidades</th>
+                <th>Web Oficial</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cripto in criptos %}
+            <tr>
+                <td scope="row">{{cripto.id}}</td>
+                <td>
+                    <img src="{{cripto.image.url}}" height="32" alt=""></td>
+                <td scope="row">{{cripto.sigle}}</td>
+                <td><a href="{% url 'getById' cripto.id %}" class=" list-group-item-action">{{cripto.name}}</a></td>
+                <td scope="row">{{cripto.unids}}</td>
+                <td><a href="{{cripto.web}}">{{cripto.web}}</a></td>
+                <td> <a name="" id="" class="btn alert-info" href="{% url 'update' cripto.id %}" role="update">Editar</a>    <a name="" id="" class="btn alert-danger" href="{% url 'delete' cripto.id %}" role="button">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    
+</div>
+{% endblock  %}

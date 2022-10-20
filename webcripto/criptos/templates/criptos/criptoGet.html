@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block titulo %}Home{% endblock  %}
+
+{% block contenido %}
+<div class="card">
+   
+  
+    <div class="card-body">
+        <h4 class="card-title">Criptomonedas</h4>
+        <p class="card-text">Listado de criptomonedas</p>
+        
+         
+        
+    </div>
+    <div class="page-header">
+        <h1>Example page header <small>Subtext for header</small></h1>
+      </div>
+      <hr>
+      <br>
+     
+      {% for campo in formulario %}  
+
+        {% if campo.field.widget.input_type == 'file' and campo.value %}
+        <div class="container">
+          <img src="{{MEDIA_URL}}/image/{{campo.value}}" width="100" alt="" srcset="">
+          </div>
+        {% endif %}   
+
+       <div class="container">
+        {% if campo.field.widget.input_type != 'file' and campo.value %}
+         <p
+          class="container"
+          name="{{ campo.name }}"><strong>{{ campo.label }}:</strong>  {{campo.value}} </p>
+         {% endif %}   
+         {% if campo.field.widget.input_type == 'link' and campo.field.widget.input_type != 'file' and campo.value %}
+         <a href="{{campo.value}}">holaa</a>
+        {% endif %} 
+       </div>
+        
+      {% endfor %}
+    
+    
+    
+</div>
+{% endblock  %}
